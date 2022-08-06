@@ -1,4 +1,7 @@
 version: '3'
+# Network name : proxy-network
+# create network proxy-network if no existing run command below before 
+# RUN : docker network create --driver=bridge --subnet=172.18.0.0/16 proxy-network 
 services:
   web:
     image: million12/nginx-php:php70
