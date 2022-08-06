@@ -14,9 +14,9 @@ services:
       - ./config/hosts.d/:/etc/nginx/hosts.d/
       - ./config/11-nginx-dirs.sh:/config/init/11-nginx-dirs.sh
     networks:
-      webproxy:
+       proxy-network:
         ipv4_address: 172.18.0.11
 networks:
-  webproxy:
+  proxy-network:
     external: true
-    name: webproxy
+    name: proxy-network
