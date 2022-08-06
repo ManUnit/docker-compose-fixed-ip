@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: million12/nginx-php:php70
+    container_name: the-host.withfixedip.com
+    restart: always
+    environment:
+      - VIRTUAL_HOST=the-host.withfixedip.com
+      - LETSENCRYPT_HOST=the-host.withfixedip.com
+      - LETSENCRYPT_EMAIL=my@email.com
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./public_html/:/data/www/default
+      - ./config/hosts.d/:/etc/nginx/hosts.d/
+      - ./config/11-nginx-dirs.sh:/config/init/11-nginx-dirs.sh
+    networks:
+      webproxy:
+        ipv4_address: 172.18.0.11
+networks:
+  webproxy:
+    external: true
+    name: webproxy
